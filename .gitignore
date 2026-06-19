@@ -1,0 +1,77 @@
+# ========================
+# Node.js / npm
+# ========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ========================
+# Environment / Secrets
+# ========================
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+*.env
+
+# ========================
+# Next.js (Frontend)
+# ========================
+.next/
+out/
+build/
+.vercel/
+
+# ========================
+# Database / Storage
+# ========================
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+/backend/data/
+uploads/
+
+# ========================
+# Logs
+# ========================
+logs/
+*.log
+*.log.*
+
+# ========================
+# OS / IDE Files
+# ========================
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ========================
+# Misc Build Artifacts
+# ========================
+dist/
+coverage/
+.cache/
+tmp/
+temp/
+
+# ========================
+# Project Notes (may contain secrets)
+# ========================
+Building AI Travel Planner.md
+*.notes.md
