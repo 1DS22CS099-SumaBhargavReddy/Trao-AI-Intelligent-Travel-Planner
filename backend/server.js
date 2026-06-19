@@ -15,7 +15,10 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3001',
-  // Vercel production domains — update with your actual deployed URL
+  // Render backend (for self-pings and Render health checks)
+  'https://trao-ai-intelligent-travel-planner.onrender.com',
+  /https:\/\/.*\.onrender\.com$/,
+  // Vercel frontend domains
   'https://trao-travel-planner.vercel.app',
   /https:\/\/trao.*\.vercel\.app$/,
   /https:\/\/.*\.vercel\.app$/,
@@ -44,7 +47,29 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/trips', require('./routes/tripRoutes'));
 app.use('/api/admin', require('./routes/adminRoutes'));
 
-// Root Healthcheck
+// Root — API Info (shown when visiting the backend URL directly)
+app.get('/', (req, res) => {
+  res.status(200).json({
+    name: '🌍 Trao AI Travel Planner — API Gateway',
+    version: '1.0.0',
+    status: 'online',
+    timestamp: new Date(),
+    endpoints: {
+      health:       'GET  /health',
+      register:     'POST /api/auth/register',
+      login:        'POST /api/auth/login',
+      trips:        'GET  /api/trips',
+      createTrip:   'POST /api/trips',
+      getTrip:      'GET  /api/trips/:id',
+      updateTrip:   'PUT  /api/trips/:id',
+      deleteTrip:   'DELETE /api/trips/:id',
+      regenerateDay:'POST /api/trips/:id/regenerate-day',
+      apiHealth:    'GET  /api/admin/health',
+    }
+  });
+});
+
+// Healthcheck
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'healthy', timestamp: new Date() });
 });
